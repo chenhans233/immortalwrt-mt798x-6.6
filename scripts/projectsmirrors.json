@@ -3,19 +3,11 @@
 		"https://downloads.sourceforge.net"
 	],
 	"@DEBIAN": [
-		"https://mirrors.tencent.com/debian",
-		"https://mirrors.aliyun.com/debian",
-		"https://mirrors.tuna.tsinghua.edu.cn/debian",
-		"https://mirrors.ustc.edu.cn/debian",
 		"https://ftp.debian.org/debian",
 		"https://mirror.leaseweb.com/debian",
 		"https://mirror.netcologne.de/debian"
 	],
 	"@APACHE": [
-		"https://mirrors.tencent.com/apache",
-		"https://mirrors.aliyun.com/apache",
-		"https://mirrors.tuna.tsinghua.edu.cn/apache",
-		"https://mirrors.ustc.edu.cn/apache",
 		"https://dlcdn.apache.org",
 		"https://mirror.aarnet.edu.au/pub/apache",
 		"https://mirror.csclub.uwaterloo.ca/apache",
@@ -30,10 +22,6 @@
                 "https://raw.githubusercontent.com"
         ],
 	"@GNU": [
-		"https://mirrors.tencent.com/gnu",
-		"https://mirrors.aliyun.com/gnu",
-		"https://mirrors.tuna.tsinghua.edu.cn/gnu",
-		"https://mirrors.ustc.edu.cn/gnu",
 		"https://ftpmirror.gnu.org",
 		"https://mirror.csclub.uwaterloo.ca/gnu",
 		"https://mirror.netcologne.de/gnu",
@@ -52,9 +40,6 @@
 		"https://cdimage.debian.org/mirror/gnu.org/savannah"
 	],
 	"@KERNEL": [
-		"https://mirror.iscas.ac.cn/kernel.org",
-		"https://mirrors.ustc.edu.cn/kernel.org",
-		"https://mirror.nju.edu.cn/kernel.org",
 		"https://cdn.kernel.org/pub",
 		"https://mirrors.mit.edu/kernel",
 		"http://ftp.nara.wide.ad.jp/pub/kernel.org",
@@ -63,8 +48,6 @@
 		"https://www.mirrorservice.org/sites/ftp.kernel.org/pub"
 	],
 	"@GNOME": [
-		"https://mirrors.ustc.edu.cn/gnome/sources",
-		"https://mirror.nju.edu.cn/gnome",
 		"https://download.gnome.org/sources",
 		"https://mirror.csclub.uwaterloo.ca/gnome/sources",
 		"https://ftp.acc.umu.se/pub/GNOME/sources",
