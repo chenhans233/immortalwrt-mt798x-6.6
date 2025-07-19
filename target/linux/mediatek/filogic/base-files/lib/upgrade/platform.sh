@@ -105,6 +105,7 @@ platform_do_upgrade() {
 	wirelesstag,zx7981pd-ubootmod|\
 	xiaomi,mi-router-ax3000t-ubootmod|\
 	xiaomi,redmi-router-ax6000-ubootmod|\
+	ikuai,q6000-110m-ubootmod|\
 	xiaomi,mi-router-wr30u-ubootmod|\
 	zyxel,ex5601-t0-ubootmod)
 		fit_do_upgrade "$1"

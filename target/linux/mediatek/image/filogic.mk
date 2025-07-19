@@ -2023,6 +2023,32 @@ define Device/xiaomi_redmi-router-ax6000-ubootmod
 endef
 TARGET_DEVICES += xiaomi_redmi-router-ax6000-ubootmod
 
+define Device/ikuai_q6000-110m-ubootmod
+  DEVICE_VENDOR := iKuai
+  DEVICE_MODEL := Q6000
+  DEVICE_DTS := mt7986a-ikuai-q6000-110m-ubootmod
+  DEVICE_DTS_DIR := ../dts
+  IMAGES := sysupgrade.itb
+  UBINIZE_OPTS := -E 5
+  BLOCKSIZE := 128k
+  PAGESIZE := 2048
+  IMAGE_SIZE := 116736k
+  KERNEL_IN_UBI := 1
+  KERNEL := kernel-bin | gzip
+  KERNEL_INITRAMFS := kernel-bin | lzma | \
+        fit lzma $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb with-initrd | pad-to 64k
+  IMAGE/sysupgrade.itb := append-kernel | \
+        fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | append-metadata
+  DEVICE_PACKAGES := kmod-leds-ws2812b kmod-mt7986-firmware mt7986-wo-firmware kmod-mtd-rw
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+ifneq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),)
+  ARTIFACTS += initramfs-factory.ubi
+  ARTIFACT/initramfs-factory.ubi := append-image-stage initramfs-recovery.itb | ubinize-kernel
+endif
+endef
+TARGET_DEVICES += ikuai_q6000-110m-ubootmod
+
+
 define Device/yuncore_ax835
   DEVICE_VENDOR := YunCore
   DEVICE_MODEL := AX835

@@ -27,6 +27,10 @@ case "$FIRMWARE" in
 		ln -sf /tmp/tp_data/MT7986_EEPROM.bin \
 			/lib/firmware/$FIRMWARE
 		;;
+	ikuai,q6000*)
+		CI_UBIPART="ubi"
+		caldata_extract_ubi "Factory" 0x0 0x1000
+		;;
 	esac
 	;;
 *)
