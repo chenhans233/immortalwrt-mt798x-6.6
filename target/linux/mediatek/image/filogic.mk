@@ -2025,10 +2025,10 @@ TARGET_DEVICES += xiaomi_redmi-router-ax6000-ubootmod
 
 define Device/ikuai_q6000-110m-ubootmod
   DEVICE_VENDOR := iKuai
-  DEVICE_MODEL := Q6000
+  DEVICE_MODEL := IK-Q6000
+  DEVICE_VARIANT := (OpenWrt 110m-U-Boot layout)
   DEVICE_DTS := mt7986a-ikuai-q6000-110m-ubootmod
   DEVICE_DTS_DIR := ../dts
-  IMAGES := sysupgrade.itb
   UBINIZE_OPTS := -E 5
   BLOCKSIZE := 128k
   PAGESIZE := 2048
@@ -2041,10 +2041,6 @@ define Device/ikuai_q6000-110m-ubootmod
         fit gzip $$(KDIR)/image-$$(firstword $$(DEVICE_DTS)).dtb external-static-with-rootfs | append-metadata
   DEVICE_PACKAGES := kmod-leds-ws2812b kmod-mt7986-firmware mt7986-wo-firmware kmod-mtd-rw
   IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
-ifneq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),)
-  ARTIFACTS += initramfs-factory.ubi
-  ARTIFACT/initramfs-factory.ubi := append-image-stage initramfs-recovery.itb | ubinize-kernel
-endif
 endef
 TARGET_DEVICES += ikuai_q6000-110m-ubootmod
 
