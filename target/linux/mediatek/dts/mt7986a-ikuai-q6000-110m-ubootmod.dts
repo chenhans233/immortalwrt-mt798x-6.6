@@ -63,6 +63,13 @@
 			gpios = <&pio 21 GPIO_ACTIVE_LOW>;
 		};
 	};
+
+	gsw: gsw@0 {
+		compatible = "mediatek,mt753x";
+		mediatek,ethsys = <&ethsys>;
+		#address-cells = <1>;
+		#size-cells = <0>;
+	};
 };
 
 &spi0 {
@@ -231,10 +238,6 @@
 	};
 };
 
-&xhci {
-	status = "okay";
-};
-
 &pio {
 	spi_flash_pins: spi-flash-pins-33-to-38 {
 		mux {
@@ -300,7 +303,7 @@
 
 &wbsys {
 	status = "okay";
-	mediatek,mtd-eeprom = <&Factory 0x0000>;
+	mediatek,mtd-eeprom = <&factory 0x0000>;
 	pinctrl-names = "default", "dbdc";
 	pinctrl-0 = <&wf_2g_5g_pins>;
 	pinctrl-1 = <&wf_dbdc_pins>;
