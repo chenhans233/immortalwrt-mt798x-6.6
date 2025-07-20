@@ -11,7 +11,7 @@
 / {
 	model = "iKuai IK-Q6000 (OpenWrt U-Boot-110m Layout)";
 	compatible = "ikuai,q6000-110m-ubootmod", "mediatek,mt7986a";
-	chosen: {
+	chosen {
 		bootargs = "console=ttyS0,115200n1 loglevel=8  \
 				earlycon=uart8250,mmio32,0x11002000";
 		stdout-path = "serial0:115200n8";
