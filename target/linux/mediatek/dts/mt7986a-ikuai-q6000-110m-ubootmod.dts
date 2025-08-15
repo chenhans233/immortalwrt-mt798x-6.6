@@ -63,13 +63,6 @@
 			gpios = <&pio 21 GPIO_ACTIVE_LOW>;
 		};
 	};
-
-	gsw: gsw@0 {
-		compatible = "mediatek,mt753x";
-		mediatek,ethsys = <&ethsys>;
-		#address-cells = <1>;
-		#size-cells = <0>;
-	};
 };
 
 &spi0 {
@@ -177,6 +170,7 @@
 		compatible = "mediatek,eth-mac";
 		reg = <1>;
 		phy-mode = "2500base-x";
+		phy-handle = <&phy7>
 
 		ext-phy-reg = <3>;
 		ext-phy-reset-gpios = <&pio 6 1>;
@@ -236,10 +230,10 @@
 		};
 
 		port@6 {
+			compatible = "ethernet-phy-id67c9.de0a"
 			reg = <6>;
 			label = "cpu";
-			ethernet = <&gmac0>;
-			phy-mode = "2500base-x";
+			phy-mode = "2500base-x";	
 
 			fixed-link {
 				speed = <2500>;
