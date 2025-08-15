@@ -171,15 +171,6 @@
 		reg = <1>;
 		phy-mode = "2500base-x";
 		phy-handle = <&phy7>
-
-		ext-phy-reg = <3>;
-		ext-phy-reset-gpios = <&pio 6 1>;
-
-		fixed-link {
-			speed = <2500>;
-			full-duplex;
-			pause;
-		};
 	};
 
 	mdio: mdio-bus {
