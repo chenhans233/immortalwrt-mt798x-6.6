@@ -11,6 +11,7 @@ mediatek_setup_interfaces()
 	abt,asr3000|\
 	cmcc,rax3000m*|\
 	cmcc,rax3000me|\
+	cmcc,xr30*|\
 	h3c,magic-nx30-pro|\
 	h3c,magic-nx30-pro-nmbm|\
 	imou,lc-hx3001|\
@@ -158,7 +159,7 @@ mediatek_setup_interfaces()
 		ucidef_set_interfaces_lan_wan "lan2 lan3 lan4" wan
 		;;
 	yvr,x6)
-		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" eth0
+		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3" wan
 		;;
 	*)
 		ucidef_set_interfaces_lan_wan "lan1 lan2 lan3 lan4" wan

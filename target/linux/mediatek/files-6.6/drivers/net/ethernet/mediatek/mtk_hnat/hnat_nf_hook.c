@@ -345,17 +345,18 @@ void ppd_dev_setting(void)
                         struct net_device *dev;
                         struct list_head *pos;
                         netdev_for_each_lower_dev(br_dev, dev, pos) {
-                                if (dev->flags & IFF_UP) {
-                                        if ((strcmp(dev->name, "eth0") == 0)) {
-						if (netif_carrier_ok(dev)){								ppd_dev = __dev_get_by_name(&init_net, dev->name);
-                                                break;}
-                                        }
-					ppd_dev = __dev_get_by_name(&init_net, dev->name);
-                                        if ((strcmp(dev->name, "eth1") == 0)) {
-                                                break;
-                                        }
-                                }
-                        }
+                        if (dev->flags & IFF_UP) {
+							if (netif_carrier_ok(dev)){
+							ppd_dev = __dev_get_by_name(&init_net, dev->name);
+                                    if ((strcmp(dev->name, "eth0") == 0))     
+									{break;}
+									if ((strcmp(dev->name, "eth1") == 0))     
+									{break;}
+									if ((strcmp(dev->name, "lan") == 0))     
+									{break;}
+							}
+						}
+                    }
                 }
         br_dev = __dev_get_by_name(&init_net, "eth1");
         if (br_dev){
@@ -2367,6 +2368,9 @@ static unsigned int mtk_hnat_nf_post_routing(
 	}
 	
 	if (!IS_LAN(out) && !IS_WAN(out) && !IS_EXT(out))
+		return 0;
+
+	if (!IS_WHNAT(out) && IS_EXT(out) && !FROM_WED(skb))
 		return 0;
  
 	trace_printk("[%s] case hit, %x-->%s, reason=%x\n", __func__,
