@@ -350,9 +350,9 @@ void ppd_dev_setting(void)
 							ppd_dev = __dev_get_by_name(&init_net, dev->name);
                                     if ((strcmp(dev->name, "eth0") == 0))     
 									{break;}
-									if ((strcmp(dev->name, "eth1") == 0))     
+									if (strncmp(dev->name, "lan", 3) == 0)     
 									{break;}
-									if ((strcmp(dev->name, "lan") == 0))     
+									if ((strcmp(dev->name, "eth1") == 0))     
 									{break;}
 							}
 						}
