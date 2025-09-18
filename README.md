@@ -61,7 +61,7 @@ To build your own firmware you need a GNU/Linux, BSD or macOS system (case sensi
   - #### 构建Golang编写的软件包
     自带的构建脚本会自动从源码安装Golang编译器，但是这样做会耗费大量时间和硬盘空间，建议事先在系统里[安装Golang](https://go.dev/doc/install/)。<br>
     确定环境安装正确之后在`make menuconfig`中的`Languages > Go > Configuration > External bootstrap Go root directory`下设置Go目录（__注意是包含bin文件夹的目录__）。<br>比如Go官方安装教程选择把环境放在`/usr/local/`中，Go root就应该填`/usr/local/go`。
-    Golang构建时会下载大量module，运行update和install之后目录下会出现`feeds/packages/lang/golang/golang-package.mk`可以尝试设置`goproxy`加速下载环节，这里用(GoProxy)[https://goproxy.cn/]来当示例。
+    Golang构建时会下载大量module，运行update和install之后目录下会出现`feeds/packages/lang/golang/golang-package.mk`可以尝试设置`goproxy`加速下载环节，这里用[GoProxy](https://goproxy.cn/)来当示例。
     搜索`GO_PKG_BUILD_VARS`字段，修改为:
     ```
     GO_PKG_BUILD_VARS= \
