@@ -44,7 +44,37 @@ To build your own firmware you need a GNU/Linux, BSD or macOS system (case sensi
       ```bash
       sudo bash -c 'bash <(curl -s https://build-scripts.immortalwrt.org/init_build_environment.sh)'
       ```
+  ### 用代理减少下载依赖的时间
+  ~~这个fork本来是有国内镜像的，但是实测并非所有软件包都有镜像加上部分镜像库有hash异常，并且在Actions环境下只会起到减速作用。~~
+  - 推荐使用物理机编译，虚拟机编译体验不佳。因系统开发者套件有兼容性问题，不推荐在MacOS上编译。
+    #### 建议配置
+    操作系统: _Debian系(Ubuntu, Linux Mint)_ <br>
+    硬盘空闲: _50GB+_<br>
+    RAM:     _8GB+_<br>
+    CPU:     _4核+_<br>
+    网络:    _互联网, 如有VPN可以极大地节省时间_
+  - 如果局域网内有另一台电脑并且安装了VPN客户端，在那台电脑上把VPN连接以SOCKS5协议对局域网开放，这个说明仅用SOCKS5协议演示。详情去查阅自己的客户端文档。当然你也可以导出VPN配置文件，编译对应的代理客户端后在Linux里开放本地SOCKS5代理接口。
+  - #### 假设你的SOCKS5接口地址在127.0.0.1，端口25000上开放，修改源码为构建脚本添加代理
+    ```bash
+    sed -i 's|qw(curl \([^)]*\))|qw(curl -x "socks5h://127.0.0.1:25000" \1)|g' ./scripts/download.pl
+    ```
+  - #### 构建Golang编写的软件包
+    自带的构建脚本会自动从源码安装Golang编译器，但是这样做会耗费大量时间和硬盘空间，建议事先在系统里[安装Golang](https://go.dev/doc/install/)。<br>
+    确定环境安装正确之后在`make menuconfig`中的`Languages > Go > Configuration > External bootstrap Go root directory`下设置Go目录（__注意是包含bin文件夹的目录__）。<br>比如Go官方安装教程选择把环境放在`/usr/local/`中，Go root就应该填`/usr/local/go`。
+    Golang构建时会下载大量module，运行update和install之后目录下会出现`feeds/packages/lang/golang/golang-package.mk`可以尝试设置`goproxy`加速下载环节，这里用(GoProxy)[https://goproxy.cn/]来当示例。
+    搜索`GO_PKG_BUILD_VARS`字段，修改为:
+    ```
+    GO_PKG_BUILD_VARS= \
+	    GOPATH="$(GO_PKG_BUILD_DIR)" \
+    	GOCACHE="$(GO_BUILD_CACHE_DIR)" \
+    	GOMODCACHE="$(GO_MOD_CACHE_DIR)" \
+    	GOENV=off \
+    	GOTOOLCHAIN=local \
+        GO111MODULE=on \
+        GOPROXY=https://goproxy.cn,direct
+    ```
 
+  
   Note:
   - Do everything as an unprivileged user, not root, without sudo.
   - Using CPUs based on other architectures should be fine to compile ImmortalWrt, but more hacks are needed - No warranty at all.
