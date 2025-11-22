@@ -72,6 +72,12 @@ livinet,zr-3020-ubootmod)
 	ucidef_set_led_netdev "wlan2g" "WLAN2G" "blue:wlan2g" "phy0-ap0"
 	ucidef_set_led_netdev "wlan5g" "WLAN5G" "blue:wlan5g" "phy1-ap0"
 	;;
+mediatek,7981r128)
+	ucidef_set_led_netdev "lan" "LAN" "LAN" "lan2"
+	ucidef_set_led_netdev "sfp" "SFP" "SFP" "eth1" "link"
+	ucidef_set_led_netdev "wifi5g" "WIFI5G" "WIFI5G" "rax0" "tx rx"
+	ucidef_set_led_netdev "wifi2g" "WIFI2G" "WIFI2G" "ra0" "tx rx"
+	;;
 mercusys,mr80x-v3)
 	ucidef_set_led_netdev "lan1" "lan-1" "green:lan-1" "lan1" "link tx rx"
 	ucidef_set_led_netdev "lan2" "lan-2" "green:lan-2" "lan2" "link tx rx"
